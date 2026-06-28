@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { auth } from "@/lib/auth";
+
+export const runtime = "edge";
 
 // Server-side guard: the entire /admin area requires login.
 export default async function AdminSegmentLayout({
@@ -8,7 +9,7 @@ export default async function AdminSegmentLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session) {
     redirect(`/login?callbackUrl=${encodeURIComponent("/admin")}`);
   }

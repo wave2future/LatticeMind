@@ -5,6 +5,10 @@ import { getDict } from "@/lib/i18n";
 import { LocaleProvider } from "@/components/LocaleProvider";
 import { AuthProvider } from "@/components/AuthProvider";
 
+// Run on the Edge runtime so the app can be deployed to Cloudflare Pages
+// (@cloudflare/next-on-pages). Set on the root layout, it applies to all routes.
+export const runtime = "edge";
+
 export function generateMetadata(): Metadata {
   const t = getDict(getLocale());
   return {

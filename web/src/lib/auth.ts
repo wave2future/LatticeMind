@@ -1,27 +1,22 @@
-import type { NextAuthOptions } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth from "next-auth";
+import Google from "next-auth/providers/google";
 
-const googleId = process.env.GOOGLE_CLIENT_ID;
-const googleSecret = process.env.GOOGLE_CLIENT_SECRET;
+const googleId = process.env.GOOGLE_CLIENT_ID ?? process.env.AUTH_GOOGLE_ID;
+const googleSecret = process.env.GOOGLE_CLIENT_SECRET ?? process.env.AUTH_GOOGLE_SECRET;
 
 export const isGoogleConfigured = Boolean(googleId && googleSecret);
 
-export const authOptions: NextAuthOptions = {
+// Auth.js v5 — edge-native, so it runs on Cloudflare Pages (Edge runtime).
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
+  secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
   providers: isGoogleConfigured
-    ? [
-        GoogleProvider({
-          clientId: googleId as string,
-          clientSecret: googleSecret as string,
-        }),
-      ]
+    ? [Google({ clientId: googleId, clientSecret: googleSecret })]
     : [],
   session: { strategy: "jwt" },
-  pages: {
-    signIn: "/login",
-  },
+  pages: { signIn: "/login" },
   callbacks: {
     async jwt({ token, profile }) {
-      // Persist the Google profile picture on first sign-in.
       if (profile && (profile as { picture?: string }).picture) {
         token.picture = (profile as { picture?: string }).picture;
       }
@@ -34,4 +29,4 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-};
+});

@@ -55,7 +55,7 @@ npm start        # 运行生产构建：next start -p <port>
 
 ## 登录（Google OAuth / NextAuth）
 
-登录与注册页的「使用 Google 继续 / Continue with Google」按钮接入了真实的 Google OAuth，基于 **NextAuth (Auth.js) v4**。
+登录与注册页的「使用 Google 继续 / Continue with Google」按钮接入了真实的 Google OAuth，基于 **Auth.js v5（NextAuth）**，边缘运行时（Edge）兼容，可部署到 Cloudflare Pages。
 
 实现要点：
 - 配置：`src/lib/auth.ts`（`authOptions` + Google Provider，JWT 会话）；API 路由：`src/app/api/auth/[...nextauth]/route.ts`。
@@ -67,7 +67,7 @@ npm start        # 运行生产构建：next start -p <port>
 2. 在 [Google Cloud Console](https://console.cloud.google.com/apis/credentials) 创建 OAuth 2.0 Web 客户端：
    - Authorized JavaScript origins：`http://localhost:3000`
    - Authorized redirect URIs：`http://localhost:3000/api/auth/callback/google`
-3. 填入 `GOOGLE_CLIENT_ID`、`GOOGLE_CLIENT_SECRET`，并设置 `NEXTAUTH_SECRET`（`openssl rand -base64 32`）与 `NEXTAUTH_URL`。
+3. 填入 `GOOGLE_CLIENT_ID`、`GOOGLE_CLIENT_SECRET`，并设置 `AUTH_SECRET`（`openssl rand -base64 32`）。
 4. `npm run dev`，访问 `/login` 点击「使用 Google 继续」即可走完授权流程并跳转到 `/account`。
 
 > 生产环境需把 origins / redirect URIs 换成实际域名，并相应设置 `NEXTAUTH_URL`。

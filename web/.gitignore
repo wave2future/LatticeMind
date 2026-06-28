@@ -7,3 +7,7 @@ next-env.d.ts.bak
 .env*.local
 .env*
 .DS_Store
+
+# Cloudflare Pages / next-on-pages build artifacts
+.vercel
+.wrangler
