@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f6f9fe;
+  --paper: #ffffff;
+  --ink: #102033;
+  --muted: #64748b;
+  --line: #dbe7f7;
+  --blue: #155eef;
+  --blue-2: #4f8cff;
+  --indigo: #6257d9;
+  --teal: #0f9f96;
+  --green: #3fa66b;
+  --orange: #f58a2a;
+  --purple: #7b61d1;
+  --shadow: 0 18px 45px rgba(29, 78, 216, 0.12);
+  --soft-shadow: 0 10px 28px rgba(15, 35, 65, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: var(--ink);
+  font-family: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  background: radial-gradient(circle at 86% 8%, #e9f3ff 0, transparent 26%),
+    radial-gradient(circle at 5% 22%, #eaf4ff 0, transparent 24%), var(--bg);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-[10px] border-0 px-[22px] py-3 text-[15px] font-extrabold text-white transition-transform;
+    background: linear-gradient(135deg, var(--blue), #327cff);
+    box-shadow: 0 10px 24px rgba(21, 94, 239, 0.26);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-[10px] bg-white px-[18px] py-[11px] text-[15px] font-extrabold transition-colors;
+    border: 1px solid #c7d8f3;
+    color: var(--blue);
+  }
+  .btn-ghost:hover {
+    background: #f5f9ff;
+  }
+
+  /* Surfaces */
+  .panel {
+    @apply rounded-[16px] p-6;
+    background: rgba(255, 255, 255, 0.93);
+    border: 1px solid var(--line);
+    box-shadow: var(--soft-shadow);
+  }
+  .card {
+    @apply rounded-[16px] p-5 transition-all;
+    background: rgba(255, 255, 255, 0.93);
+    border: 1px solid var(--line);
+    box-shadow: var(--soft-shadow);
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: #bcd3f6;
+  }
+
+  /* Pills & tags */
+  .pill {
+    @apply inline-flex items-center gap-[6px] rounded-full px-[11px] py-[6px] text-[13px] font-bold;
+    background: #f5f9ff;
+    border: 1px solid #d8e6f8;
+    color: #37516f;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-[9px] rounded-full px-[17px] py-[10px] text-[14px] font-extrabold;
+    border: 1px solid #bdd5ff;
+    background: rgba(239, 246, 255, 0.86);
+    color: var(--blue);
+  }
+
+  /* Inputs */
+  .field {
+    @apply flex h-12 w-full items-center rounded-[12px] bg-white px-[14px] font-bold text-ink outline-none;
+    border: 1px solid #cbdcf2;
+  }
+  .field::placeholder {
+    color: var(--muted);
+  }
+  .field:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(21, 94, 239, 0.12);
+  }
+  .filter-chip {
+    @apply inline-flex h-[46px] cursor-pointer items-center gap-1 rounded-[12px] bg-white px-[15px] font-extrabold;
+    border: 1px solid #cbdcf2;
+    color: #37516f;
+  }
+  .filter-chip:hover {
+    border-color: #9db9df;
+  }
+
+  /* Section title */
+  .section-title {
+    @apply mb-4 flex items-center justify-between;
+  }
+  .section-title h2 {
+    @apply m-0 text-[26px] font-extrabold;
+  }
+  .section-link {
+    @apply font-extrabold text-brand;
+  }
+
+  /* Sidebar nav item */
+  .side-item {
+    @apply mb-[6px] cursor-pointer rounded-[10px] px-[13px] py-3 font-extrabold transition-colors;
+    color: #35506f;
+  }
+  .side-item:hover {
+    background: #f2f7ff;
+  }
+  .side-item.active {
+    color: var(--blue);
+    background: #edf5ff;
+  }
+
+  /* Step row */
+  .step-no {
+    @apply grid h-[34px] w-[34px] flex-shrink-0 place-items-center rounded-full font-black text-white;
+    background: var(--blue);
+  }
+
+  /* Progress bar */
+  .progress {
+    @apply mt-3 h-2 overflow-hidden rounded-full;
+    background: #e6eefb;
+  }
+  .progress > .bar {
+    @apply h-full rounded-full;
+    background: linear-gradient(90deg, var(--blue), var(--teal));
+  }
+
+  /* Tables */
+  .data-table {
+    @apply w-full border-collapse;
+  }
+  .data-table th,
+  .data-table td {
+    @apply px-3 py-[14px] text-left;
+    border-bottom: 1px solid #edf2fb;
+  }
+  .data-table th {
+    @apply text-[13px];
+    color: #46627f;
+    background: #f7fbff;
+  }
+  .data-table td {
+    @apply font-semibold;
+    color: #1d324d;
+  }
+}
+
+.lead {
+  color: #35506f;
+  font-size: 18px;
+  line-height: 1.72;
+}
