@@ -1,10 +1,12 @@
 import { SiteLayout } from "@/components/SiteLayout";
 import { Breadcrumb, IconBadge, Pill, StepRow } from "@/components/ui";
 import { RelatedModels, RelatedBiases, RelatedCases } from "@/components/RelatedLinks";
+import { PlainBox } from "@/components/PlainBox";
 import type { Bias } from "@/lib/types";
 import type { Locale } from "@/lib/i18n/config";
 import { getDict } from "@/lib/i18n";
 import { localizeMisjudgment, localizeBias } from "@/lib/data/localize";
+import { getBiasExtra } from "@/lib/data/extras";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -76,6 +78,7 @@ export function BiasDetail({
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[1.5fr_1fr]">
         <div className="space-y-6">
+          <PlainBox extra={getBiasExtra(raw.slug, locale)} locale={locale} />
           <Section title={td.mechanism}>
             <p className="text-[16px] leading-[1.8] text-[#35506f]">{bias.mechanism}</p>
           </Section>

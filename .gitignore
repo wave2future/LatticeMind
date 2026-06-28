@@ -1,0 +1,18 @@
+# Design assets and PRD docs (not part of the app source)
+/ui/
+/docs/
+
+# Dependencies & build output
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# Env files
+.env
+.env*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db

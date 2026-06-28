@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Breadcrumb, IconBadge, Pill, StepRow } from "@/components/ui";
 import { RelatedModels } from "@/components/RelatedLinks";
+import { PlainBox } from "@/components/PlainBox";
 import { systemTools, systemToolMap } from "@/lib/data";
+import { getSystemExtra } from "@/lib/data/extras";
 import { localizeSystemTool } from "@/lib/data/localize";
 import { getLocale } from "@/lib/i18n/locale";
 import { getDict } from "@/lib/i18n";
@@ -54,6 +56,7 @@ export default function SystemDetailPage({ params }: { params: { slug: string } 
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[1.5fr_1fr]">
         <div className="space-y-6">
+          <PlainBox extra={getSystemExtra(raw.slug, locale)} locale={locale} />
           <Section title={t.systems.howToUse}>
             <p className="text-[16px] leading-[1.8] text-[#35506f]">{tool.howToUse}</p>
           </Section>
