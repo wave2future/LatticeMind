@@ -6,10 +6,19 @@ const googleSecret = process.env.GOOGLE_CLIENT_SECRET ?? process.env.AUTH_GOOGLE
 
 export const isGoogleConfigured = Boolean(googleId && googleSecret);
 
+// Auth.js v5 requires a secret. Use a dev-only fallback so `npm run dev` works
+// without a .env.local; production MUST set AUTH_SECRET.
+const secret =
+  process.env.AUTH_SECRET ??
+  process.env.NEXTAUTH_SECRET ??
+  (process.env.NODE_ENV !== "production"
+    ? "dev-only-insecure-secret-change-me-in-production"
+    : undefined);
+
 // Auth.js v5 — edge-native, so it runs on Cloudflare Pages (Edge runtime).
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
-  secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
+  secret,
   providers: isGoogleConfigured
     ? [Google({ clientId: googleId, clientSecret: googleSecret })]
     : [],
