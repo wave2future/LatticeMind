@@ -21,12 +21,12 @@ export default function HomePage() {
   ];
 
   const contentMap = [
-    { label: t.home.cmModels, sub: "100+", href: "/models", color: "#155eef" },
-    { label: t.home.cmCases, sub: "300+", href: "/cases", color: "#3fa66b" },
-    { label: t.home.cmMis, sub: "28", href: "/misjudgment", color: "#0f9f96" },
-    { label: t.home.cmChecklist, sub: "50+", href: "/decision", color: "#f58a2a" },
-    { label: t.home.cmBiases, sub: "50+", href: "/biases", color: "#7b61d1" },
-    { label: t.home.cmSystems, sub: "20+", href: "/systems", color: "#2781ca" },
+    { label: t.home.cmModels, sub: platformStats.models, href: "/models", color: "#155eef" },
+    { label: t.home.cmCases, sub: platformStats.cases, href: "/cases", color: "#3fa66b" },
+    { label: t.home.cmMis, sub: platformStats.tendencies, href: "/misjudgment", color: "#0f9f96" },
+    { label: t.home.cmChecklist, sub: platformStats.templates, href: "/decision", color: "#f58a2a" },
+    { label: t.home.cmBiases, sub: platformStats.biases, href: "/biases", color: "#7b61d1" },
+    { label: t.home.cmSystems, sub: platformStats.systems, href: "/systems", color: "#2781ca" },
   ];
 
   return (

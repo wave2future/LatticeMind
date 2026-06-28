@@ -43,12 +43,16 @@ export function systemHref(slug: string): string | null {
   return systemToolMap[slug] ? `/systems/${slug}` : null;
 }
 
+// Derived from the actual content so the homepage numbers never drift.
 export const platformStats = {
-  models: "100+",
-  biases: "50+",
-  tendencies: "28",
-  paths: "5",
-  casesCount: "300+",
+  models: String(models.length),
+  biases: String(biases.length),
+  tendencies: String(misjudgments.length),
+  paths: String(paths.length),
+  cases: String(cases.length),
+  systems: String(systemTools.length + archetypes.length),
+  templates: String(decisionTemplates.length),
+  fallacies: String(fallacies.length),
 };
 
 export {
